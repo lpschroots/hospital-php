@@ -15,7 +15,7 @@
 					<td><?= $client['client_firstname']; ?></td>
 					<td><?= $client['client_lastname']; ?></td>
 					<td>0612345678</td>
-					<td>johndoe@hismail.com</td>
+					<td>someones@hismail.com</td>
 					<td><a href="<?= URL ?>client/edit/<?= $client['client_id'] ?>">Edit</a></td>
 					<td><a href="<?= URL ?>client/delete/<?= $client['client_id'] ?>">Delete</a></td>
 				</tr>
@@ -23,4 +23,4 @@
 		</tbody>
 	</table>
 		<p><a href="<?= URL ?>client/create">Create</a></p>
-		<p><a href="<?= URL ?>patient/index">Home</a></p>
+		<p><a href="<?= URL ?>home/index">Home</a></p>
