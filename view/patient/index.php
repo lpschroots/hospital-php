@@ -25,4 +25,4 @@
 		</tbody>
 	</table>
 		<p><a href="<?= URL ?>patient/create">Create</a></p>
-		<p><a href="<?= URL ?>home/index">Home</a></p>
+		<p><a href="<?= URL ?>patient/index">Home</a></p>

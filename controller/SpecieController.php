@@ -11,19 +11,44 @@ function index()
 	));
 }
 
+function delete($id)
+{
+	if (!deleteSpecie($id)) {
+		header("Location:" . URL . "error/index");
+		exit();
+	}
+
+	header("Location:" . URL . "specie/index");
+}
+
 function edit($id)
 {
 	render("specie/edit", array(
-		'species' => getSpecie($id)
+		'specie' => getSpecie($id)
 	));
 }
 
 function editSave()
 {
-	if (!editSpecies()) {
+	if (!editSpecie()) {
 		header("Location:" . URL . "error/index");
 		exit();
 	}
 
 	header("Location:" . URL . "specie/index");
 } 
+
+function create()
+{
+	render("specie/create");
+}
+
+function createSave()
+{
+	if (!createSpecies()) {
+		header("Location:" . URL . "error/index");
+		exit();
+	}
+
+	header("Location:" . URL . "specie/index");
+}

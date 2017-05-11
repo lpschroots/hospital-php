@@ -27,23 +27,58 @@ function getSpecie($id)
 	return $query->fetch();
 }
 
-function editSpecies() 
+function deleteSpecie($id = null) 
 {
-	$discription = isset($_POST['discription']) ? $_POST['discription'] : null;
-	
-	if (strlen($discription) == 0) {
+	if (!$id) {
 		return false;
 	}
 	
 	$db = openDatabaseConnection();
 
-	$sql = "UPDATE species SET species_discription = :discription WHERE species_id = :id";
+	$sql = "DELETE FROM species WHERE species_id =:id ";
 	$query = $db->prepare($sql);
 	$query->execute(array(
-		':discription' => $discription,
 		':id' => $id));
 
 	$db = null;
 	
+	return true;
+}
+
+function editSpecie() 
+{
+	$description = isset($_POST['description']) ? $_POST['description'] : null;
+	$id = isset($_POST['id']) ? $_POST['id'] : null;
+	
+	if (strlen($description) == 0) {
+		return false;
+	}
+	
+	$db = openDatabaseConnection();
+
+	$sql = "UPDATE species SET species_description = :description WHERE species_id = :id";
+	$query = $db->prepare($sql);
+	$query->execute(array(
+		':description' => $description,
+		':id' => $id));
+
+	$db = null;
+	
+	return true;
+}
+
+function createSpecies()
+{	
+	$db = openDatabaseConnection();
+	$species = isset($_POST['species']) ? $_POST['species'] : null;
+	if (strlen($species) == 0) {
+		return false;
+	}
+	$sql = "INSERT INTO species (species_description) VALUES (:species)";
+	$query = $db->prepare($sql);
+	$query->execute(array(
+		":species" => $species
+		));
+	$db = null;
 	return true;
 }

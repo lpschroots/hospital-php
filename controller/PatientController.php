@@ -24,15 +24,15 @@ function delete($id)
 
 function create()
 {
-	render("student/create");
+	render("patient/create");
 }
 
 function createSave()
 {
-	if (!createStudent()) {
+	if (!createPatient()) {
 		header("Location:" . URL . "error/index");
 		exit();
 	}
 
-	header("Location:" . URL . "student/index");
+	header("Location:" . URL . "patient/index");
 }
