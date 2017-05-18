@@ -15,7 +15,7 @@ function getAllPatients()
 function getPatient($id) 
 {
 	$db = openDatabaseConnection();
-	$sql = "SELECT * FROM patients WHERE id = :id";
+	$sql = "SELECT * FROM patients WHERE patient_id = :id";
 	$query = $db->prepare($sql);
 	$query->execute(array(
 		":id" => $id));
@@ -34,6 +34,58 @@ function deletePatient($id = null)
 	$sql = "DELETE FROM patients WHERE patient_id =:id ";
 	$query = $db->prepare($sql);
 	$query->execute(array(
+		':id' => $id));
+
+	$db = null;
+	
+	return true;
+}
+
+function createPatient()
+{	
+	$db = openDatabaseConnection();
+	$name = isset($_POST['patient_name']) ? $_POST['patient_name'] : null;
+	$species = isset($_POST['species_id']) ? $_POST['species_id'] : null;
+	$status = isset($_POST['patient_status']) ? $_POST['patient_status'] : null;
+	$client = isset($_POST['client_id']) ? $_POST['client_id'] : null;
+
+	if (strlen($name) == 0 || strlen($species) == 0 || strlen($status) == 0 || strlen($client) == 0) {
+		return false;
+	}
+
+	$sql = "INSERT INTO patients (patient_name, species_id, patient_status, client_id)
+	VALUES (:patient, :species, :status, :client)";
+	$query = $db->prepare($sql);
+	$query->execute(array(
+		":patient" => $name,
+		":species" => $species,
+		":status" => $status,
+		":client" => $client));	
+	$db = null;
+	return true;
+}
+
+function editStudent() 
+{
+	$db = openDatabaseConnection();
+	$name = isset($_POST['patient_name']) ? $_POST['patient_name'] : null;
+	$species = isset($_POST['species_id']) ? $_POST['species_id'] : null;
+	$status = isset($_POST['patient_status']) ? $_POST['patient_status'] : null;
+	$client = isset($_POST['client_id']) ? $_POST['client_id'] : null;
+
+	if (strlen($name) == 0 || strlen($species) == 0 || strlen($status) == 0 || strlen($client) == 0) {
+		return false;
+	}
+	
+	$db = openDatabaseConnection();
+
+	$sql = "UPDATE patients SET patient_name = :name, species_id = :species, patient_status = :status, client_id = :client WHERE patient_id = :id";
+	$query = $db->prepare($sql);
+	$query->execute(array(
+		':name' => $name,
+		':species' => $species,
+		':status' => $status,
+		':client' => $client,
 		':id' => $id));
 
 	$db = null;

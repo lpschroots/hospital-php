@@ -11,7 +11,6 @@ function index()
 	));
 }
 
-
 function delete($id)
 {
 	if (!deletePatient($id)) {
@@ -28,8 +27,24 @@ function create()
 }
 
 function createSave()
-{
+{	
 	if (!createPatient()) {
+		header("Location:" . URL . "error/index");
+		exit();
+	}
+	header("Location:" . URL . "patient/index");
+}
+
+function edit($id)
+{
+	render("patient/edit", array(
+		'student' => getPatient($id)
+	));
+}
+
+function editSave()
+{
+	if (!editPatient()) {
 		header("Location:" . URL . "error/index");
 		exit();
 	}

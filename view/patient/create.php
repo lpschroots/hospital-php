@@ -5,13 +5,16 @@
 <div class="container">
 	<form action="<?= URL ?>patient/createSave" method="post">
 	
-		<p><label>Name:</label><input type="text" name="name" placeholder="Kyra">
-		<p><label>Species:</label><select name="species">
-			<option value="hond">Hond</option>
-			<option value="kat">Kat</option></select></p>
-		<div><label>Status:</label><textarea name="status"></textarea></div>
-		<p><label>Client Firstname:</label><input type="text" name="firstname" placeholder="John"></p>
-		<p><label>Client Lastname:</label><input type="text" name="lastname" placeholder="Doe"></p>
+		<p><label>Name:</label><input type="text" name="patient_name" placeholder="Naam van het dier">
+		<p><label>Species:</label><select name="species_id">
+			<option></option>
+			<option>1</option>
+			<option>2</option></select></p>
+			<p><label>Client:</label><select name="client_id">
+			<option></option>
+			<option>1</option>
+			<option>2</option></select></p>
+		<div><label>Status:</label><textarea name="patient_status" placeholder="Beschrijving van situatie "></textarea></div>
 
 		<input type="submit" value="Verzenden">
 	
