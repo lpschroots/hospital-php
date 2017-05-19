@@ -23,7 +23,10 @@ function delete($id)
 
 function create()
 {
-	render("patient/create");
+	render("patient/create", array(
+		'clients' => getAllClients(),
+		'species' => getAllSpecies()
+		));
 }
 
 function createSave()
@@ -38,7 +41,9 @@ function createSave()
 function edit($id)
 {
 	render("patient/edit", array(
-		'student' => getPatient($id)
+		'patient' => getPatient($id),
+		'clients' => getAllClients(),
+		'species' => getAllSpecies()
 	));
 }
 

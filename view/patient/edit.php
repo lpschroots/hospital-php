@@ -2,18 +2,34 @@
 	<h1>Edit patient</h1>
 	<form action="<?= URL ?>patient/editSave" method="post">
 	
-		<input type="text" name="name" value="<?= $patient['patient_name']; ?>">
-		<select name="species">
-			<option value="1" <?php if ($patient['species_id'] == "1") { echo "selected=\"true\""; } ?>>1</option>
-			<option value="2" <?php if ($patient['species_id'] == "2") { echo "selected=\"true\""; } ?>>2</option>	
-		</select>
-		<select name="client">
-			<option value="1" <?php if ($patient['client_id'] == "1") { echo "selected=\"true\""; } ?>>1</option>
-			<option value="2" <?php if ($patient['client_id'] == "2") { echo "selected=\"true\""; } ?>>2</option>	
-		</select>
-		<input type="text" name="status" value="<?= $patient['patient_status']; ?>">
+		<p><label>Name:</label><input type="text" name="patient_name" value="<?= $patient['patient_name']; ?>"></p>
+		<p>
+			<label>Species:</label>
+				<select name="species_id">
+					<?php foreach ($species as $specie) { ?>
+						<option value="<?=$specie['species_id'] ?>" <?php if ($specie['species_id'] == $patient['species_id']) { echo "selected"; } ?>>
 
-		<input type="hidden" name="id" value="<?= $patient['patient_id']; ?>">
+							<?=$specie['species_description'] ?>
+
+						</option>							
+					<?php } ?>
+				</select>
+		</p>
+		<p>
+			<label>Client:</label>
+				<select name="client_id">
+					<?php foreach ($clients as $client) { ?>
+						<option value="<?=$client['client_id'] ?>" <?php if ($client['client_id'] == $patient['client_id']) { echo "selected"; } ?>>
+
+								<?= $client['client_firstname'] . " " . $client['client_lastname']  ?>
+
+						</option>							
+					<?php } ?>	
+				</select>
+		</p>
+		<p><label>Status:</label><textarea name="patient_status" type="text"><?= $patient['patient_status']; ?></textarea></p>
+
+		<input type="hidden" name="patient_id" value="<?= $patient['patient_id']; ?>">
 		<input type="submit" value="Verzenden">
 	
 	</form>
