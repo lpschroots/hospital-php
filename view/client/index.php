@@ -14,8 +14,8 @@
 				<tr>
 					<td><?= $client['client_firstname']; ?></td>
 					<td><?= $client['client_lastname']; ?></td>
-					<td>0612345678</td>
-					<td>someones@hismail.com</td>
+					<td><?= $client['client_phone']; ?></td>
+					<td><?= $client['client_email']; ?></td>
 					<td><a href="<?= URL ?>client/edit/<?= $client['client_id'] ?>">Edit</a></td>
 					<td><a href="<?= URL ?>client/delete/<?= $client['client_id'] ?>">Delete</a></td>
 				</tr>
